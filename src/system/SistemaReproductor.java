@@ -4,15 +4,14 @@ import model.ListaCircular;
 import model.ListaSimple;
 import ucn.*;
 
-import java.util.ArrayList;
 
 public class SistemaReproductor implements ISistema{
 
     // Lista de canciones del sistema.
-    ListaSimple listaSimpleCanciones = new ListaSimple();
+    ListaSimple listaCanciones = new ListaSimple();
 
     // Lista de playlists del usuario.
-    ArrayList<ListaCircular> playlists = new ArrayList<>();
+    ListaCircular playlist = new ListaCircular();
 
     @Override
     public void lecturaArchivo() {

@@ -1,14 +1,9 @@
 import system.ISistema;
-import system.SistemaReproductor;
 import ucn.*;
 import util.Instalador;
 
 public class Main {
 
-    /**
-     * Esta variable estática indica cual será la opción que permite salir del sistema.
-     */
-    private static final String OPCION_SALIDA = "X";
     private static ISistema SISTEMA_REPRODUCTOR;
 
     public static void main(String[] args) {
@@ -35,14 +30,13 @@ public class Main {
 
         String opcion = "";
 
-        while (!OPCION_SALIDA.equals(opcion)) {
+        while (!opcion.equals("X")) {
             StdOut.println("--------->Bienvenido a Spotify<---------");
             StdOut.println("[A] Buscar canción.");
-            StdOut.println("[B] Crear playlist.");
-            StdOut.println("[C] Reproducir canción.");
-            StdOut.println("[D] Agregar canción a playlist.");
-            StdOut.println("[E] Ordenar playlist según puesto en ranking.");
-            StdOut.println("[F] Eliminar canción de playlist.");
+            StdOut.println("[B] Reproducir canción.");
+            StdOut.println("[C] Agregar canción a playlist.");
+            StdOut.println("[D] Ordenar playlist según puesto en ranking.");
+            StdOut.println("[E] Eliminar canción de playlist.");
             StdOut.println("[X] Guardar y salir del sistema.");
             StdOut.print("Ingrese su opción: ");
 
@@ -54,8 +48,31 @@ public class Main {
                 //case "C" ->
                 //case "D" ->
                 //case "E" ->
-                //case "F" ->
-                case OPCION_SALIDA -> salirSistema();
+                case "X" -> salirSistema();
+                default -> StdOut.println("Opción no válida. Por favor, intente de nuevo.");
+            }
+        }
+    }
+
+    private static void reproductor() {
+
+        String opcion = "";
+
+        while (!opcion.equals("X")) {
+            StdOut.println("--------->Reproductor<---------");
+
+            // TODO: TRAER DATOS DE LA CANCIÓN.
+
+            StdOut.println("[A] Siguiente canción.");
+            StdOut.println("[B] Anterior canción.");
+            StdOut.println("[X] Volver al menú anterior");
+            StdOut.print("Ingrese su opción: ");
+
+            opcion = StdIn.readString().toUpperCase();
+
+            switch (opcion) {
+                //case "A" ->
+                //case "B" ->
                 default -> StdOut.println("Opción no válida. Por favor, intente de nuevo.");
             }
         }
