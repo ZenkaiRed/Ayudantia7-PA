@@ -44,7 +44,7 @@ public class Main {
 
             switch (opcion) {
                 //case "A" ->
-                //case "B" ->
+                case "B" -> reproductor();
                 //case "C" ->
                 //case "D" ->
                 //case "E" ->
@@ -54,6 +54,9 @@ public class Main {
         }
     }
 
+    /**
+     * Método que hace referencia al reproductor del sistema.
+     */
     private static void reproductor() {
 
         String opcion = "";
