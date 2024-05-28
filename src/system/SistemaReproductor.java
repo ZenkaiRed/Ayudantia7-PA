@@ -1,5 +1,6 @@
 package system;
 
+import model.Cancion;
 import model.ListaCircular;
 import model.ListaSimple;
 import ucn.*;
@@ -31,6 +32,8 @@ public class SistemaReproductor implements ISistema{
                 int puestoRanking = registroEntrada.getInt();
 
                 // TODO: Crear la lógica para agregar las canciones al sistema.
+                Cancion cancion = new Cancion(nombreCancion, genero, minutos, segundos, reproducciones, puestoRanking);
+                this.listaCanciones.agregarCancion(cancion);
 
             }
             // Cerramos el archivo.
@@ -39,5 +42,12 @@ public class SistemaReproductor implements ISistema{
         catch (Exception e){
             throw new RuntimeException("Ha ocurrido un error al leer el archivo.");
         }
+    }
+
+    @Override
+    public String reproducirCancion() {
+
+
+
     }
 }

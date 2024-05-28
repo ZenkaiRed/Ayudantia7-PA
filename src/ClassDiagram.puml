@@ -1,0 +1,105 @@
+@startuml
+skin rose
+package model {
+
+    class Cancion {
+
+        - nombre: String
+        - genero: String
+        - minutos: int
+        - segundos: int
+        - reproducciones: int
+        - puestoRanking: int
+
+        + Cancion(nombre:String, genero:String, minutos:int
+        segundos:int, reproducciones:int, puestoRanking:int)
+        + get() & set()
+    }
+
+    class NodoSimple {
+
+        - cancion: Cancion
+        - siguiente: NodoSimple
+
+        + NodoSimple(cancion:Cancion)
+        + get() & set()
+
+    }
+
+    class NodoDoble {
+
+        - cancion: Cancion
+        - siguiente: NodoDoble
+        - anterior: NodoDoble
+
+        + NodoDoble(cancion:Cancion)
+        + get() & set()
+
+    }
+
+    class ListaCircular {
+
+        - cabeza: NodoDoble
+        - cantidadActual: int
+        - cancionActual: String
+
+        + ListaCircular()
+        + agregarCancion(cancion:Cancion): boolean
+        + obtenerCancion(nombre:String): Cancion
+        + siguienteCancion(): Cancion
+        + anteriorCancion(): Cancion
+        + eliminarCancion(nombre:String): boolean
+        + ordenarPlaylist(): void
+
+    }
+
+    class ListaSimple {
+
+        - cabeza: NodoSimple
+        - cantidadActual: int
+
+        + ListaSimple()
+        + agregarCancion(cancion:Cancion): void
+        + obtenerCancion(nombre:String): Cancion
+    }
+
+}
+
+package system {
+
+    interface ISistema {
+
+        + leerArchivo(): void
+        + reproducirCancion(): String
+        + agregarCancion(nombre:String, genero:String, minutos:int
+         segundos:int, reproducciones:int, puestoRanking:int): boolean
+        + eliminarCancionPlaylist(nombre:String): boolean
+        + buscarCancion(nombre:String): String
+        + ordenarPlaylist(): void
+
+    }
+
+    class SistemaReproductor implements ISistema {
+
+        - playlist: ListaCircular
+        - cancionesSistema: ListaSimple
+
+        + SistemaReproductor()
+    }
+
+
+}
+
+SistemaReproductor "1" --> "1" ListaCircular
+SistemaReproductor "1" --> "1" ListaSimple
+
+ListaSimple "1" --> "1" NodoSimple
+ListaCircular "1" --> "1" NodoDoble
+
+NodoSimple "1" --> "1" NodoSimple
+NodoDoble "1" --> "2" NodoDoble
+
+NodoDoble "1" --> "1" Cancion
+NodoSimple "1" --> "1" Cancion
+
+@enduml
