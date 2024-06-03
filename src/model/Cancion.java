@@ -18,6 +18,19 @@ public class Cancion {
         this.puestoRanking = puestoRanking;
     }
 
+    /**
+     * Constructor de copia.
+     * @param cancion Canción a copiar.
+     */
+    public Cancion(Cancion cancion) {
+        this.nombre = cancion.getNombre();
+        this.genero = cancion.getGenero();
+        this.minutos = cancion.getMinutos();
+        this.segundos = cancion.getSegundos();
+        this.reproducciones = cancion.getReproducciones();
+        this.puestoRanking = cancion.getPuestoRanking();
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -64,5 +77,19 @@ public class Cancion {
 
     public void setPuestoRanking(int puestoRanking) {
         this.puestoRanking = puestoRanking;
+    }
+
+    @Override
+    public String toString() {
+
+        // Formateamos la salida de la canción.
+        return """
+                Nombre: %s
+                Tipo: %s
+                Minutos: %d
+                Segundos: %d
+                Reproducciones: %d
+                Ranking: %d
+                """.formatted(this.nombre, this.genero, this.minutos, this.segundos, this.reproducciones, this.puestoRanking);
     }
 }

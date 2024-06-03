@@ -2,6 +2,8 @@ import system.ISistema;
 import ucn.*;
 import util.Instalador;
 
+import java.util.Objects;
+
 public class Main {
 
     private static ISistema SISTEMA_REPRODUCTOR;
@@ -31,7 +33,7 @@ public class Main {
         String opcion = "";
 
         while (!opcion.equals("X")) {
-            StdOut.println("--------->Bienvenido a Spotify<---------");
+            StdOut.println("\n--------->Bienvenido a Spotify<---------");
             StdOut.println("[A] Buscar canción.");
             StdOut.println("[B] Reproducir canción.");
             StdOut.println("[C] Agregar canción a playlist.");
@@ -43,15 +45,32 @@ public class Main {
             opcion = StdIn.readString().toUpperCase();
 
             switch (opcion) {
-                //case "A" ->
+                case "A" -> buscarCancion();
                 case "B" -> reproductor();
-                //case "C" ->
+                case "C" -> agregarCancionPlaylist();
                 //case "D" ->
                 //case "E" ->
                 case "X" -> salirSistema();
                 default -> StdOut.println("Opción no válida. Por favor, intente de nuevo.");
             }
         }
+    }
+
+    private static void buscarCancion() {
+        StdOut.println("\n--------->Buscar una canción<---------");
+        StdOut.print("[*] Ingrese el nombre de la canción: ");
+
+        String nombreCancion = StdIn.readLine();
+
+        String cancionEncontrada = SISTEMA_REPRODUCTOR.buscarCancion(nombreCancion);
+
+        if (cancionEncontrada.isEmpty()) {
+            StdOut.println("La canción no se encuentra en el sistema.");
+        } else {
+            StdOut.println("Canción encontrada:");
+            StdOut.println(cancionEncontrada);
+        }
+
     }
 
     /**
@@ -78,6 +97,24 @@ public class Main {
                 //case "B" ->
                 default -> StdOut.println("Opción no válida. Por favor, intente de nuevo.");
             }
+        }
+    }
+
+    /**
+     * Método que agrega una canción a la playlist del usuario.
+     */
+    private static void agregarCancionPlaylist() {
+
+        StdOut.println("\n--------->Agregar canción a playlist<---------");
+        StdOut.print("[*] Ingrese el nombre de la canción: ");
+        String nombreCancion = StdIn.readString();
+
+        boolean resultado = SISTEMA_REPRODUCTOR.agregarCancionPlaylist(nombreCancion);
+
+        if (resultado){
+            StdOut.println("Canción agregada a la playlist.");
+        } else {
+            StdOut.println("La canción no se encuentra en el sistema o ya está en la playlist.");
         }
     }
 

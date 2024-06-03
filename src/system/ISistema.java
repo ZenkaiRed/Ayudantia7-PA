@@ -6,4 +6,8 @@ public interface ISistema {
 
     String reproducirCancion();
 
+    String buscarCancion(String nombre);
+
+    boolean agregarCancionPlaylist(String nombreCancion);
+
 }

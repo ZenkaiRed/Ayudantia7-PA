@@ -36,6 +36,21 @@ public class ListaSimple {
         this.cantidad++;
     }
 
+    public void agregarInicio(Cancion cancion) {
+
+        if (this.cabeza == null){
+            this.cabeza = new NodoSimple(cancion);
+            this.cantidad++;
+            return;
+        }
+
+        NodoSimple nuevoNodo = new NodoSimple(cancion);
+
+        nuevoNodo.setSiguiente(this.cabeza);
+        this.cabeza = nuevoNodo;
+        this.cantidad++;
+    }
+
     public Cancion obtenerCancion(String nombre) {
 
         if (this.cabeza == null) {
